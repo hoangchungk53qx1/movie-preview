@@ -16,10 +16,12 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.ksp) apply false
+
     alias(libs.plugins.dagger.hilt.android) apply false
     alias(libs.plugins.spotless) apply false
     alias(libs.plugins.detekt) apply false
 
-    id("cinemax.spotless")
-    id("cinemax.detekt")
+    id("movie-preview.spotless")
+    id("movie-preview.detekt")
+
 }

@@ -5,12 +5,12 @@ plugins {
 //    id("com.android.application")
 //    id("org.jetbrains.kotlin.android")
 
-    id("cinemax.android.application")
-    id("cinemax.android.application.compose")
-//    id("cinemax.android.lint")
-//    id("cinemax.android.signingconfig")
-//    id("cinemax.apikey.provider")
-
+    id("movie-preview.android.application")
+    id("movie-preview.android.application.compose")
+    id("movie-preview.android.lint")
+    id("movie-preview.android.signingconfig")
+    id("movie-preview.apikey.provider")
+//
 //    alias(libs.plugins.kotlin.kapt)
 //    alias(libs.plugins.dagger.hilt.android)
 }
@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     implementation(libs.androidx.compose.material3)
+
     implementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.core.splashscreen)

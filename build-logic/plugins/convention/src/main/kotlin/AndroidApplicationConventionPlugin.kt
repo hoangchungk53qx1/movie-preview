@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Maximillian Leonov
+ * Copyright 2022 ChungHoang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
 /*
- * Copyright 2022 Maximillian Leonov
+ * Copyright 2022 ChungHoang
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
