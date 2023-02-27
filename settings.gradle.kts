@@ -1,11 +1,13 @@
+
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
-        gradlePluginPortal()
-        maven { url = uri("https://jitpack.io") }
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -15,3 +17,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "movie-preview"
 include(":app")
+
+
