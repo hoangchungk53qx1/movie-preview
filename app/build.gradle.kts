@@ -1,6 +1,7 @@
 import org.gradle.kotlin.dsl.*
 import org.gradle.kotlin.dsl.accessors.runtime.*
 
+
 plugins {
 //    id("com.android.application")
 //    id("org.jetbrains.kotlin.android")
@@ -36,23 +37,13 @@ android {
 
 dependencies {
 
-//    implementation("androidx.core:core-ktx:1.9.0")
-//    implementation("androidx.appcompat:appcompat:1.6.0")
-//    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-//    implementation("androidx.activity:activity-compose:1.3.1")
-//    implementation("androidx.compose.ui:ui:1.2.0")
-//    implementation("androidx.compose.ui:ui-tooling-preview:1.2.0")
-//    implementation("androidx.compose.material:material:1.2.0")
-//
-//
-//    testImplementation("junit:junit:4.13.2")
-//    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-//    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-//    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.0")
-//
-//
-//    debugImplementation("androidx.compose.ui:ui-tooling:1.2.0")
-//    debugImplementation("androidx.compose.ui:ui-test-manifest:1.2.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.3.3")
+
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.3")
 
 
     implementation(libs.androidx.activity.compose)
@@ -68,7 +59,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.dagger.hilt.android)
-//    kapt(libs.dagger.hilt.compiler)
+
 
     implementation(libs.androidx.room.runtime)
 }

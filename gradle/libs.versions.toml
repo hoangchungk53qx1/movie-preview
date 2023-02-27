@@ -130,6 +130,7 @@ androidx-compose = [
     "androidx-compose-ui-util"
 ]
 androidx-room = ["androidx-room-runtime", "androidx-room-ktx", "androidx-room-paging"]
+
 androidx-benchmark = [
     "androidx-test-ext-junit",
     "androidx-test-espresso-core",
@@ -145,7 +146,9 @@ android-test = { id = "com.android.test", version.ref = "android-gradle-plugin" 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
