@@ -21,6 +21,7 @@ plugins {
     alias(libs.plugins.spotless) apply false
     alias(libs.plugins.detekt) apply false
 
+
     id("movie-preview.spotless")
     id("movie-preview.detekt")
 
