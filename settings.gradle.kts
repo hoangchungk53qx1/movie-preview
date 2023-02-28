@@ -1,4 +1,3 @@
-
 pluginManagement {
     includeBuild("build-logic")
     repositories {
@@ -19,3 +18,5 @@ rootProject.name = "movie-preview"
 include(":app")
 
 
+include(":core")
+include(":core:systemdesign")

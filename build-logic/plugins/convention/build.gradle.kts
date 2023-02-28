@@ -18,7 +18,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.chungha.movie_preview.buildlogic"
+group = "com.chungha.movie_preview.build-logic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
