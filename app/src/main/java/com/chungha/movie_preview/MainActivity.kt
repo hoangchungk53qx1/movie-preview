@@ -37,6 +37,7 @@ fun Greeting(name: String) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
+
     MoviepreviewTheme {
         Greeting("Android")
     }
