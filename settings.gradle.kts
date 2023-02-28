@@ -20,3 +20,4 @@ include(":app")
 
 include(":core")
 include(":core:systemdesign")
+include(":core:core-ui")
