@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.`movie-preview`.chungha
+package movie.preview.chungha
 
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project

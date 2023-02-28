@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import com.`movie-preview`.chungha.libs
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import movie.preview.chungha.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

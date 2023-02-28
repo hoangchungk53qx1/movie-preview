@@ -15,8 +15,8 @@
  */
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import com.`movie-preview`.chungha.configureAndroidCompose
-import com.`movie-preview`.chungha.libs
+import movie.preview.chungha.configureAndroidCompose
+import movie.preview.chungha.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
