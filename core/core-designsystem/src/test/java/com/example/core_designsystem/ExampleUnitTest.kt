@@ -1,4 +1,4 @@
-package com.chungha.systemdesign
+package com.example.core_designsystem
 
 import org.junit.Test
 

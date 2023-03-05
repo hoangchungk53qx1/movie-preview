@@ -1,11 +1,7 @@
 import org.gradle.kotlin.dsl.*
 import org.gradle.kotlin.dsl.accessors.runtime.*
 
-
 plugins {
-//    id("com.android.application")
-//    id("org.jetbrains.kotlin.android")
-
     id("movie-preview.android.application")
     id("movie-preview.android.application.compose")
     id("movie-preview.android.lint")
@@ -36,7 +32,10 @@ android {
 }
 
 dependencies {
+    //add sub module
+    implementation(project(":core:core-designsystem"))
 
+    // lib
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
