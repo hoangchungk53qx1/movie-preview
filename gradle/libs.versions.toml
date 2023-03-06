@@ -26,6 +26,7 @@ androidx-room = "2.5.0"
 androidx-datastore = "1.0.0"
 androidx-paging = "3.1.1"
 androidx-paging-compose = "1.0.0-alpha17"
+androidxComposeMaterial3 = "1.1.0-alpha06"
 androidx-hilt = "1.0.0"
 androidx-test-ext = "1.1.5"
 androidx-test-espresso = "3.5.1"
@@ -55,7 +56,7 @@ androidx-annotation = { module = "androidx.annotation:annotation", version.ref =
 
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui" }
-androidx-compose-material3 = { module = "androidx.compose.material:material" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
