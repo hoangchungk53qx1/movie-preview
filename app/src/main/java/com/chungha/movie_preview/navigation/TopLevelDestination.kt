@@ -10,25 +10,25 @@ enum class TopLevelDestination(
     val iconTextId: Int,
     val titleTextId: Int,
 ) {
-    Home(
+    HOME(
         selectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Home_Icon),
         unselectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Home_Icon),
         iconTextId = R.string.home_title,
         titleTextId = R.string.app_name,
     ),
-    Search(
+    SEARCH(
         selectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Search_Icon),
         unselectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Search_Icon),
         iconTextId = R.string.search_title,
         titleTextId = R.string.app_name,
     ),
-    Wishlist(
+    FAVOURITE(
         selectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.WishList_Icon),
         unselectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.WishList_Icon),
         iconTextId = R.string.wishlist_title,
         titleTextId = R.string.app_name,
     ),
-    Settings(
+    SETTING(
         selectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Setting_Icon),
         unselectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Setting_Icon),
         iconTextId = R.string.search_title,

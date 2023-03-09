@@ -34,6 +34,11 @@ android {
 dependencies {
     //add sub module
     implementation(project(":core:core-designsystem"))
+    implementation(project(":feature:feature-home"))
+    implementation(project(":feature:feature-search"))
+    implementation(project(":feature:feature-favorite"))
+    implementation(project(":feature:feature-setting"))
+
 
     // lib
     testImplementation("junit:junit:4.13.2")
@@ -46,10 +51,13 @@ dependencies {
 
 
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.bom)
 
     implementation(libs.androidx.compose.material3)
-
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+    implementation(libs.androidx.compose.bom)
     implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.tracing.ktx)
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.profileinstaller)
@@ -58,9 +66,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.compose)
 
-
     implementation(libs.dagger.hilt.android)
-
 
     implementation(libs.androidx.room.runtime)
 }
