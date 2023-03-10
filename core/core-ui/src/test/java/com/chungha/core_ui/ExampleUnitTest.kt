@@ -1,4 +1,4 @@
-package com.example.core_ui
+package com.chungha.core_ui
 
 import org.junit.Test
 

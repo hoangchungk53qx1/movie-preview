@@ -1,3 +1,9 @@
+android {
+    buildTypes {
+        create("benchmark") {
+        }
+    }
+}
 plugins {
     id("movie-preview.android.library")
     id("movie-preview.android.library.compose")

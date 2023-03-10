@@ -29,15 +29,15 @@ fun rememberNiaAppState(
     windowSizeClass: WindowSizeClass,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
-): NiaAppState {
+): AppState {
     NavigationTrackingSideEffect(navController)
     return remember(navController, coroutineScope, windowSizeClass) {
-        NiaAppState(navController, coroutineScope, windowSizeClass)
+        AppState(navController, coroutineScope, windowSizeClass)
     }
 }
 
 @Stable
-class NiaAppState(
+class AppState(
     val navController: NavHostController,
     val coroutineScope: CoroutineScope,
     val windowSizeClass: WindowSizeClass,
@@ -120,15 +120,5 @@ class NiaAppState(
  */
 @Composable
 private fun NavigationTrackingSideEffect(navController: NavHostController) {
-//    TrackDisposableJank(navController) { metricsHolder ->
-//        val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
-//            metricsHolder.state?.putState("Navigation", destination.route.toString())
-//        }
-//
-//        navController.addOnDestinationChangedListener(listener)
-//
-//        onDispose {
-//            navController.removeOnDestinationChangedListener(listener)
-//        }
-//    }
+
 }

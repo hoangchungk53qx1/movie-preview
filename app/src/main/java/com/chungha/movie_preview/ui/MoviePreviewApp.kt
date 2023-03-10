@@ -37,7 +37,7 @@ import kotlinx.coroutines.flow.SharingStarted
 @Composable
 fun NiaApp(
     windowSizeClass: WindowSizeClass,
-    appState: NiaAppState = rememberNiaAppState(
+    appState: AppState = rememberNiaAppState(
         windowSizeClass = windowSizeClass,
     ),
 ) {
@@ -83,7 +83,7 @@ fun NiaApp(
                 snackbarHost = { SnackbarHost(snackbarHostState) },
                 bottomBar = {
                     if (appState.shouldShowBottomBar) {
-                        NiaBottomBar(
+                        BottomBar(
                             destinations = appState.topLevelDestinations,
                             onNavigateToDestination = appState::navigateToTopLevelDestination,
                             currentDestination = appState.currentDestination,
@@ -104,7 +104,7 @@ fun NiaApp(
                         ),
                 ) {
                     if (appState.shouldShowNavRail) {
-                        NiaNavRail(
+                        NavRail(
                             destinations = appState.topLevelDestinations,
                             onNavigateToDestination = appState::navigateToTopLevelDestination,
                             currentDestination = appState.currentDestination,
@@ -118,17 +118,6 @@ fun NiaApp(
                         // Show the top app bar on top level destinations.
                         val destination = appState.currentTopLevelDestination
                         if (destination != null) {
-//                            NiaTopAppBar(
-//                                titleRes = destination.titleTextId,
-//                                actionIcon = NiaIcons.Settings,
-//                                actionIconContentDescription = stringResource(
-//                                    id = settingsR.string.top_app_bar_action_icon_description,
-//                                ),
-//                                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-//                                    containerColor = Color.Transparent,
-//                                ),
-//                                onActionClick = { appState.setShowSettingsDialog(true) },
-//                            )
                         }
 
                         MoviePreviewNavHost(appState.navController)
@@ -143,7 +132,7 @@ fun NiaApp(
 }
 
 @Composable
-private fun NiaNavRail(
+private fun NavRail(
     destinations: List<TopLevelDestination>,
     onNavigateToDestination: (TopLevelDestination) -> Unit,
     currentDestination: NavDestination?,
@@ -152,7 +141,7 @@ private fun NiaNavRail(
     NiaNavigationRail(modifier = modifier) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
-            NiaNavigationRailItem(
+            NavigationRailItem(
                 selected = selected,
                 onClick = { onNavigateToDestination(destination) },
                 icon = {
@@ -180,7 +169,7 @@ private fun NiaNavRail(
 }
 
 @Composable
-private fun NiaBottomBar(
+private fun BottomBar(
     destinations: List<TopLevelDestination>,
     onNavigateToDestination: (TopLevelDestination) -> Unit,
     currentDestination: NavDestination?,
@@ -191,7 +180,7 @@ private fun NiaBottomBar(
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
-            NiaNavigationBarItem(
+            NavigationBarItem(
                 selected = selected,
                 onClick = { onNavigateToDestination(destination) },
                 icon = {

@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
  * only be shown when this item is selected.
  */
 @Composable
-fun RowScope.NiaNavigationBarItem(
+fun RowScope.NavigationBarItem(
     selected: Boolean,
     onClick: () -> Unit,
     icon: @Composable () -> Unit,
@@ -43,11 +43,11 @@ fun RowScope.NiaNavigationBarItem(
         label = label,
         alwaysShowLabel = alwaysShowLabel,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedIconColor = NiaNavigationDefaults.navigationContentColor(),
-            selectedTextColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedTextColor = NiaNavigationDefaults.navigationContentColor(),
-            indicatorColor = NiaNavigationDefaults.navigationIndicatorColor(),
+            selectedIconColor = MoviePreviewNavigationDefaults.navigationSelectedItemColor(),
+            unselectedIconColor = MoviePreviewNavigationDefaults.navigationContentColor(),
+            selectedTextColor = MoviePreviewNavigationDefaults.navigationSelectedItemColor(),
+            unselectedTextColor = MoviePreviewNavigationDefaults.navigationContentColor(),
+            indicatorColor = MoviePreviewNavigationDefaults.navigationIndicatorColor(),
         ),
     )
 }
@@ -66,7 +66,7 @@ fun NiaNavigationBar(
 ) {
     NavigationBar(
         modifier = modifier,
-        contentColor = NiaNavigationDefaults.navigationContentColor(),
+        contentColor = MoviePreviewNavigationDefaults.navigationContentColor(),
         tonalElevation = 0.dp,
         content = content,
     )
@@ -88,7 +88,7 @@ fun NiaNavigationBar(
  * only be shown when this item is selected.
  */
 @Composable
-fun NiaNavigationRailItem(
+fun NavigationRailItem(
     selected: Boolean,
     onClick: () -> Unit,
     icon: @Composable () -> Unit,
@@ -107,11 +107,11 @@ fun NiaNavigationRailItem(
         label = label,
         alwaysShowLabel = alwaysShowLabel,
         colors = NavigationRailItemDefaults.colors(
-            selectedIconColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedIconColor = NiaNavigationDefaults.navigationContentColor(),
-            selectedTextColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedTextColor = NiaNavigationDefaults.navigationContentColor(),
-            indicatorColor = NiaNavigationDefaults.navigationIndicatorColor(),
+            selectedIconColor = MoviePreviewNavigationDefaults.navigationSelectedItemColor(),
+            unselectedIconColor = MoviePreviewNavigationDefaults.navigationContentColor(),
+            selectedTextColor = MoviePreviewNavigationDefaults.navigationSelectedItemColor(),
+            unselectedTextColor = MoviePreviewNavigationDefaults.navigationContentColor(),
+            indicatorColor = MoviePreviewNavigationDefaults.navigationIndicatorColor(),
         ),
     )
 }
@@ -133,7 +133,7 @@ fun NiaNavigationRail(
     NavigationRail(
         modifier = modifier,
         containerColor = Color.Transparent,
-        contentColor = NiaNavigationDefaults.navigationContentColor(),
+        contentColor = MoviePreviewNavigationDefaults.navigationContentColor(),
         header = header,
         content = content,
     )
@@ -142,7 +142,7 @@ fun NiaNavigationRail(
 /**
  * Now in Android navigation default values.
  */
-object NiaNavigationDefaults {
+object MoviePreviewNavigationDefaults {
     @Composable
     fun navigationContentColor() = MaterialTheme.colorScheme.onSurfaceVariant
 
