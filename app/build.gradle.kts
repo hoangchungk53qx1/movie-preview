@@ -8,8 +8,8 @@ plugins {
     id("movie-preview.android.signingconfig")
     id("movie-preview.apikey.provider")
 //
-//    alias(libs.plugins.kotlin.kapt)
-//    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt.android)
 }
 
 @Suppress("UnstableApiUsage")
@@ -67,6 +67,6 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 
     implementation(libs.dagger.hilt.android)
-
+    kapt(libs.dagger.hilt.compiler)
     implementation(libs.androidx.room.runtime)
 }

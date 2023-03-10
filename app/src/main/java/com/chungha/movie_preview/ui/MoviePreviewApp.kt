@@ -87,7 +87,7 @@ fun NiaApp(
                             destinations = appState.topLevelDestinations,
                             onNavigateToDestination = appState::navigateToTopLevelDestination,
                             currentDestination = appState.currentDestination,
-                            modifier = Modifier.testTag("NiaBottomBar"),
+                            modifier = Modifier.testTag("BottomBar"),
                         )
                     }
                 },
