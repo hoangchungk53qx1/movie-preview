@@ -31,11 +31,11 @@ class ApiKeyProviderConventionPlugin : Plugin<Project> {
         }
 
         val cinemaxApiKey = checkNotNull(
-            localProperties.getProperty("cinemax.apikey") ?: System.getenv("CINEMAX_API_KEY")
+            localProperties.getProperty("movie_preview.apikey") ?: System.getenv("MOVIE_PREVIEW_API_KEY")
         )
 
         extensions.configure<BaseAppModuleExtension> {
-            defaultConfig.buildConfigField("String", "CINEMAX_API_KEY", "\"$cinemaxApiKey\"")
+            defaultConfig.buildConfigField("String", "MOVIE_PREVIEW_API_KEY", "\"$cinemaxApiKey\"")
         }
     }
 }
