@@ -35,6 +35,8 @@ dependencies {
     //add sub module
     implementation(project(":core:core-designsystem"))
     implementation(project(":core:core-network"))
+    implementation(project(":core:core-data"))
+    implementation(project(":core:core-domain"))
     implementation(project(":feature:feature-home"))
     implementation(project(":feature:feature-search"))
     implementation(project(":feature:feature-favorite"))

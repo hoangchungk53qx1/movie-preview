@@ -1,16 +1,15 @@
-package com.example.core_network.model.response
+package com.example.core_network.common
 
 import com.example.core_network.Constants
+import com.example.core_network.model.response.MovieResponse
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-@Serializable
-data class MovieResponseDto(
+data class NetworkResponse<T>(
     @SerialName(Constants.Fields.PAGE)
     val page: Int,
 
     @SerialName(Constants.Fields.RESULTS)
-    val results: List<MovieResponse>,
+    val results: T,
 
     @SerialName(Constants.Fields.TOTAL_PAGES)
     val totalPages: Int,

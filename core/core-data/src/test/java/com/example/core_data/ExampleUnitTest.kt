@@ -1,4 +1,4 @@
-package com.chungha.core_data
+package com.example.core_data
 
 import org.junit.Test
 

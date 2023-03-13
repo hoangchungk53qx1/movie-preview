@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     api(project(":core:core-common"))
+    api(project(":core:core-network"))
 
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.coroutines.core)
