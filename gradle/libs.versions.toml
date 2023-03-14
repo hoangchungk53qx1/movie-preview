@@ -45,6 +45,7 @@ livedata-ktx = "2.6.0"
 
 dagger = "2.44"
 okhttp = "4.10.0"
+okhttp_intercepter = "5.0.0-alpha.9"
 retrofit = "2.9.0"
 retrofit-kotlinx-serialization-converter = "0.8.0"
 
@@ -109,6 +110,7 @@ dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
 
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp_intercepter = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp_intercepter" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlinx-serialization-converter" }
 
@@ -160,7 +162,7 @@ androidx-benchmark = [
     "androidx-test-uiautomator",
     "androidx-benchmark-macro-junit4"
 ]
-retrofit = ["okhttp", "retrofit", "retrofit-kotlinx-serialization-converter"]
+retrofit = ["okhttp", "retrofit", "retrofit-kotlinx-serialization-converter","okhttp_intercepter"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }

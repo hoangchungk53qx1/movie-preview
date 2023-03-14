@@ -2,13 +2,14 @@ package com.example.core_designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 /**
  * Now in Android typography.
  */
-internal val NiaTypography = Typography(
+ val MovieTypography = Typography(
     displayLarge = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 57.sp,
@@ -100,3 +101,11 @@ internal val NiaTypography = Typography(
         letterSpacing = 0.sp,
     ),
 )
+
+
+val TextFieldStyle =
+    TextStyle(
+        color = TextFieldTextColor,
+        fontFamily = FontFamily.Default,
+        fontSize = 16.sp
+    )

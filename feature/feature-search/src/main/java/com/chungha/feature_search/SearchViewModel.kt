@@ -26,6 +26,7 @@ class SearchViewModel @Inject constructor(
     val uiState = _uiState.asStateFlow()
 
     init {
+        queryTextChange("bao")
         _queryMovie
             .asFlow()
             .flowOn(dispatcher.io)

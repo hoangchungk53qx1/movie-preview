@@ -19,10 +19,8 @@ android {
 dependencies {
     implementation(project(":core:core-common"))
     implementation(project(":core:core-model"))
-    implementation(project(":core:core-data"))
 
     implementation(libs.kotlinx.datetime)
-
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.bundles.retrofit)

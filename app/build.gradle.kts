@@ -29,6 +29,21 @@ android {
             useSupportLibrary = true
         }
     }
+    kotlinOptions {
+        val experimentalOptIns = listOf(
+            "-Xopt-in=androidx.compose.ui.ExperimentalComposeUiApi",
+            "-Xopt-in=com.google.accompanist.pager.ExperimentalPagerApi",
+            "-Xopt-in=androidx.compose.ui.graphics.ExperimentalGraphicsApi",
+            "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi",
+            "-Xopt-in=kotlinx.coroutines.FlowPreview",
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        )
+
+        freeCompilerArgs =
+            freeCompilerArgs + experimentalOptIns
+
+        jvmTarget = "11"
+    }
 }
 
 dependencies {
@@ -37,6 +52,10 @@ dependencies {
     implementation(project(":core:core-network"))
     implementation(project(":core:core-data"))
     implementation(project(":core:core-domain"))
+    implementation(project(":core:core-model"))
+    implementation(project(":core:core-ui"))
+
+
     implementation(project(":feature:feature-home"))
     implementation(project(":feature:feature-search"))
     implementation(project(":feature:feature-favorite"))

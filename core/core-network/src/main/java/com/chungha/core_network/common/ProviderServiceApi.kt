@@ -1,6 +1,7 @@
 package com.chungha.core_network.common
 
 import com.chungha.core_network.MoviePreviewKeyProvider
+import com.chungha.core_network.di.NetworkModule.retrofit
 import com.chungha.core_network.service.SearchService
 import retrofit2.create
 import javax.inject.Inject

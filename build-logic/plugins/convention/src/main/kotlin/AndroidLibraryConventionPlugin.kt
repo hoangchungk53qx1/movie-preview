@@ -35,6 +35,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 targetSdk = libs.versions.android.targetSdk.get().toInt()
 
                 buildTypes {
+//                    debug {
+//                        isMinifyEnabled = false
+//                        isShrinkResources = false
+//                    }
                     release {
                         isMinifyEnabled = true
                         proguardFiles(

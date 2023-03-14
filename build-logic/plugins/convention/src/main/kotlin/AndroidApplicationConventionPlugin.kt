@@ -51,6 +51,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 targetSdk = libs.versions.android.targetSdk.get().toInt()
 
                 buildTypes {
+
                     release {
                         isMinifyEnabled = true
                         isShrinkResources = true

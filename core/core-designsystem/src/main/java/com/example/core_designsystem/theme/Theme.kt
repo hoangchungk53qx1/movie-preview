@@ -219,7 +219,7 @@ fun NiaTheme(
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = NiaTypography,
+            typography = MovieTypography,
             content = content,
         )
     }

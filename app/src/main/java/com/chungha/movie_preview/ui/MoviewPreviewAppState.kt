@@ -19,7 +19,6 @@ import com.chungha.feature_search.navigation.navigationSearch
 import com.chungha.feature_search.navigation.searchRoute
 import com.chungha.feature_setting.navigation.navigationSetting
 import com.chungha.feature_setting.navigation.settingRoute
-import com.chungha.movie_preview.di.DispatcherProvider
 import com.chungha.movie_preview.navigation.TopLevelDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
