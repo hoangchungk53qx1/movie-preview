@@ -1,19 +1,29 @@
-
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.serialization)
+    id("movie-preview.android.library")
+    id("movie-preview.android.hilt")
+    id("kotlinx-serialization")
 }
 
-//android.namespace = "com.chungha.movie_preview.core_network"
+android {
+    namespace = "com.chungha.core_network"
+    buildFeatures {
+        buildConfig = true
+    }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+}
 
 dependencies {
     implementation(project(":core:core-common"))
     implementation(project(":core:core-model"))
 
     implementation(libs.kotlinx.datetime)
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.bundles.retrofit)
     implementation(libs.javax.inject)
-
 }

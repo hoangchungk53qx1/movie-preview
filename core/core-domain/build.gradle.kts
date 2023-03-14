@@ -1,5 +1,11 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
+    id("movie-preview.android.library")
+    id("movie-preview.android.hilt")
+    id("kotlinx-serialization")
+}
+
+android {
+    namespace = "com.chungha.core_domain"
 }
 
 dependencies {
@@ -10,4 +16,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.javax.inject)
     implementation(libs.androidx.paging.common)
+
 }

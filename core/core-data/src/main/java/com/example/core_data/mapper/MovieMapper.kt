@@ -1,7 +1,7 @@
 package com.example.core_data.mapper
 
-import com.example.core_network.model.response.MovieResponse
-import domain.chungha.core_domain.model.MovieModel
+import com.chungha.core_domain.model.MovieModel
+import com.chungha.core_network.model.response.MovieResponse
 
 fun MovieResponse.toMovieModel(): MovieModel {
     return MovieModel(

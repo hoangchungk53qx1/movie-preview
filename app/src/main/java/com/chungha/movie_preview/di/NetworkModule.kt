@@ -1,8 +1,8 @@
 package com.chungha.movie_preview.di
 
+import com.chungha.core_network.MoviePreviewKeyProvider
+import com.chungha.core_network.common.ProviderServiceApi
 import com.chungha.movie_preview.BuildConfig
-import com.example.core_network.MoviePreviewKeyProvider
-import com.example.core_network.common.ProviderServiceApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
