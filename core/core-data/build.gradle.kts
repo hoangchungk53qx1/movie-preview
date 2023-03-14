@@ -1,5 +1,7 @@
 plugins {
     id("movie-preview.android.library")
+    id("movie-preview.android.hilt")
+    id("kotlinx-serialization")
 }
 
 android.namespace = "com.chungha.movie_preview.core.data"
