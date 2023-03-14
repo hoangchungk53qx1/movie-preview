@@ -64,6 +64,10 @@ gradlePlugin {
             id = "movie-preview.android.lint"
             implementationClass = "AndroidLintConventionPlugin"
         }
+        register("androidHilt") {
+            id = "movie-preview.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
         register("androidSigningConfig") {
             id = "movie-preview.android.signingconfig"
             implementationClass = "AndroidSigningConfigConventionPlugin"
