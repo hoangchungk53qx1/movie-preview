@@ -58,6 +58,6 @@ This is an example of an Android App who uses Jetpack Compose to draw the UI, Ko
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/hoangchungk53qx1"><img src="https://www.facebook.com/photo/?fbid=1805642676470380&set=a.110764749291523" width="100px;" alt=""/><br /><sub><b>Hoangchung</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/hoangchungk53qx1"><img src="https://avatars.githubusercontent.com/hoangchungk53qx1" width="100px;" alt=""/><br /><sub><b>Hoangchung</b></sub></a><br /></td>
   </tr>
 </table>
