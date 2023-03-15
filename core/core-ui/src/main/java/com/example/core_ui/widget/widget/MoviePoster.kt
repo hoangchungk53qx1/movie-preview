@@ -1,4 +1,4 @@
-package com.example.core_ui.widget
+package com.example.core_ui.widget.widget
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,7 +29,8 @@ fun MoviePoster(
         modifier = modifier.height(size)
     ) {
         AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current),
+            model = ImageRequest.Builder(LocalContext.current).data(imagePath).crossfade(false)
+                .build(),
             contentDescription = "moviePoster",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds,

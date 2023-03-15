@@ -1,4 +1,4 @@
-package com.example.core_ui.widget
+package com.example.core_ui.widget.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,5 +20,6 @@ fun LoadingPreview(modifier: Modifier) {
     LottieAnimation(
         composition = composite,
         modifier = modifier,
+        progress = { processLottie },
     )
 }

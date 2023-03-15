@@ -1,4 +1,4 @@
-package com.example.core_data
+package com.example.core_ui.widget.common
 
 sealed class LceState<out T> {
     object Loading : LceState<Nothing>()

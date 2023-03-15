@@ -1,15 +1,15 @@
 package com.chungha.feature_search
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.chungha.core_domain.model.MovieModel
 import com.chungha.core_domain.usecase.SearchMovieUseCase
-import com.example.core_data.LceState
 import com.example.core_data.di.DispatcherProvider
+import com.example.core_ui.widget.common.LceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
@@ -26,23 +26,25 @@ class SearchViewModel @Inject constructor(
     val uiState = _uiState.asStateFlow()
 
     init {
-        queryTextChange("bao")
         _queryMovie
             .asFlow()
             .flowOn(dispatcher.io)
             .filter { query -> query.trim().isEmpty().not() }
             .debounce(300L)
             .distinctUntilChanged()
+            .catch { _uiState.value = LceState.Error(message = it.message.orEmpty()) }
             .flatMapLatest { query ->
                 searchMovieUseCase.invoke(query)
             }
             .onEach {
+                Log.d("SearchViewModel", it.toString())
                 _uiState.value = LceState.Success(it)
             }
             .launchIn(viewModelScope)
     }
 
     fun queryTextChange(query: String) {
+        _uiState.value = LceState.Loading
         _queryMovie.value = query
     }
 
