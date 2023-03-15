@@ -5,7 +5,7 @@ This is an example of an Android App who uses Jetpack Compose to draw the UI, Ko
 
 ## How use this app
 - Request an api key from themoviedb https://developers.themoviedb.org/3/getting-started/authentication and later put that key in the build.gradle app file.
-- Add movie_preview.apikey= ****
+- Create local.properties and add movie_preview.apikey=  "************" in this
 
   The **Movie Preview** app has been fully modularized and you can find the detailed guidance and
   description of the modularization strategy used in
