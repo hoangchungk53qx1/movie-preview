@@ -32,19 +32,19 @@ class SearchViewModel @Inject constructor(
             .filter { query -> query.trim().isEmpty().not() }
             .debounce(300L)
             .distinctUntilChanged()
-            .catch { _uiState.value = LceState.Error(message = it.message.orEmpty()) }
             .flatMapLatest { query ->
                 searchMovieUseCase.invoke(query)
             }
+            .catch { _uiState.value = LceState.Error(message = it.message.orEmpty()) }
             .onEach {
-                Log.d("SearchViewModel", it.toString())
                 _uiState.value = LceState.Success(it)
-            }
-            .launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
     }
 
     fun queryTextChange(query: String) {
-        _uiState.value = LceState.Loading
+        if (query.trim().isNotEmpty()) {
+            _uiState.value = LceState.Loading
+        }
         _queryMovie.value = query
     }
 
