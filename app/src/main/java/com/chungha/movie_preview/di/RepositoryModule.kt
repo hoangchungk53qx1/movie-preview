@@ -16,4 +16,8 @@ interface RepositoryModule {
     @ViewModelScoped
     fun bindMovieRepository(searchMovieRepositoryImpl: SearchMovieRepositoryImpl) : SearchRepository
 
+    @Binds
+    @ViewModelScoped
+    fun bindMoviePlayingRepository(searchMovieRepositoryImpl: SearchMovieRepositoryImpl) : SearchRepository
+
 }
