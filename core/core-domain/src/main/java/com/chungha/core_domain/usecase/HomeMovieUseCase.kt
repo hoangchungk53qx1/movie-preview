@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class HomeMovieUseCase @Inject constructor(
     private val moviePlayingRepository: MoviePlayingRepository,
     private val dispatcherProvider: DispatcherProvider
