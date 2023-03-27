@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.chungha.core_domain.model.MovieModel
 import com.chungha.core_domain.usecase.SearchMovieUseCase
-import com.example.core_data.di.DispatcherProvider
+import com.chungha.core_network.di.DispatcherProvider
 import com.example.core_ui.widget.common.LceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

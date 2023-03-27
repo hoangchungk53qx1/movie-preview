@@ -1,4 +1,4 @@
-package com.example.core_data.di
+package com.chungha.core_network.di
 
 import dagger.Module
 import dagger.Provides

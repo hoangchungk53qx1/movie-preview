@@ -1,4 +1,4 @@
-package com.example.core_network.service
+package com.chungha.core_network.service
 
 interface TvShowService {
 }
