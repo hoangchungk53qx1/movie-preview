@@ -16,19 +16,17 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchMovieUseCase: SearchMovieUseCase,
-    dispatcher: DispatcherProvider
+    dispatcher: DispatcherProvider,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _queryMovie = MutableLiveData<String>()
-    val query: LiveData<String> = _queryMovie
+    val query = savedStateHandle.getStateFlow("Search","")
 
     private val _uiState = MutableStateFlow<LceState<List<MovieModel>>>(LceState.None)
     val uiState = _uiState.asStateFlow()
 
     init {
-        _queryMovie
-            .asFlow()
-            .flowOn(dispatcher.io)
+        query
             .filter { query -> query.trim().isEmpty().not() }
             .debounce(300L)
             .distinctUntilChanged()
@@ -45,7 +43,7 @@ class SearchViewModel @Inject constructor(
         if (query.trim().isNotEmpty()) {
             _uiState.value = LceState.Loading
         }
-        _queryMovie.value = query
+        savedStateHandle["Search"] = query
     }
 
 }
