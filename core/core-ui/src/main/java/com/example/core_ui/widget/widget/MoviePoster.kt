@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -37,4 +38,13 @@ fun MoviePoster(
             placeholder = painterResource(id = R.drawable.placeholder)
         )
     }
+}
+
+@Composable
+@Preview(name = "MoviePoster", showBackground = true)
+fun MoviePosterPreview() {
+    MoviePoster(
+        "",
+        100.dp,
+    )
 }

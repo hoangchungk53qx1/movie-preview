@@ -55,7 +55,8 @@ fun SearchScreen(
 ) {
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val keyboardController = LocalSoftwareKeyboardController.current
-    val queryValue: String by searchViewModel.query.observeAsState(initial = "")
+//    val queryValue: String by searchViewModel.query.observeAsState(initial = "")
+    val queryValue: String by searchViewModel.query.collectAsStateWithLifecycle()
     val uiState by searchViewModel.uiState.collectAsStateWithLifecycle()
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (query, content) = createRefs()
