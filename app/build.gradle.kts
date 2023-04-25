@@ -66,10 +66,10 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.3.3")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.4.2")
 
     debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.3")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.4.2")
 
 
     implementation(libs.androidx.activity.compose)
