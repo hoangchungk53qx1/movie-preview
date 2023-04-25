@@ -28,12 +28,10 @@ hs_err_pid*
 ./build-logic/.gradle
 
 *.iml
-/local.properties
 /.idea
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
 keystore.properties
