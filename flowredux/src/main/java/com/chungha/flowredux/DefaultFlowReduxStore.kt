@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.job
 
-internal class DefaultFlowReduxStore<Action, State>(
+class DefaultFlowReduxStore<Action, State>(
     coroutineContext: CoroutineContext,
     initialState: State,
     sideEffects: List<SideEffect<Action, State>>,

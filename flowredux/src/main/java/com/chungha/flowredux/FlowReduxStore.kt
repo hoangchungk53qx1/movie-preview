@@ -1,6 +1,5 @@
 package com.chungha.flowredux
 
-import com.chungha.flowredux.DefaultFlowReduxStore
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -17,29 +16,29 @@ import kotlinx.coroutines.job
 
 // TODO: Consider using AutoCloseable since Kotlin 1.8.20
 public sealed interface FlowReduxStore<Action, State> {
-  /**
-   * The state of this store.
-   */
-  public val stateFlow: StateFlow<State>
+    /**
+     * The state of this store.
+     */
+    public val stateFlow: StateFlow<State>
 
-  /**
-   * @return false if cannot dispatch action (this store was closed).
-   */
-  public fun dispatch(action: Action): Boolean
+    /**
+     * @return false if cannot dispatch action (this store was closed).
+     */
+    public fun dispatch(action: Action): Boolean
 
-  /**
-   * Call this method to close this store.
-   * A closed store will not accept any action anymore, thus state will not change anymore.
-   * All [SideEffect]s will be cancelled.
-   */
-  public fun close()
+    /**
+     * Call this method to close this store.
+     * A closed store will not accept any action anymore, thus state will not change anymore.
+     * All [SideEffect]s will be cancelled.
+     */
+    fun close()
 
-  /**
-   * After calling [close] method, this function will return true.
-   *
-   * @return true if this store was closed.
-   */
-  public fun isClosed(): Boolean
+    /**
+     * After calling [close] method, this function will return true.
+     *
+     * @return true if this store was closed.
+     */
+    fun isClosed(): Boolean
 }
 
 /**
@@ -54,21 +53,21 @@ public sealed interface FlowReduxStore<Action, State> {
  * @param sideEffects A list of [SideEffect]s.
  * @param reducer A [Reducer] function.
  */
-public fun <Action, State> CoroutineScope.createFlowReduxStore(
-  initialState: State,
-  sideEffects: List<SideEffect<Action, State>>,
-  reducer: Reducer<Action, State>,
+fun <Action, State> CoroutineScope.createFlowReduxStore(
+    initialState: State,
+    sideEffects: List<SideEffect<Action, State>>,
+    reducer: Reducer<Action, State>,
 ): FlowReduxStore<Action, State> {
-  val store = DefaultFlowReduxStore(
-    coroutineContext = coroutineContext,
-    initialState = initialState,
-    sideEffects = sideEffects,
-    reducer = reducer
-  )
-  coroutineContext.job.invokeOnCompletion {
-    store.close()
-  }
-  return store
+    val store = DefaultFlowReduxStore(
+        coroutineContext = coroutineContext,
+        initialState = initialState,
+        sideEffects = sideEffects,
+        reducer = reducer
+    )
+    coroutineContext.job.invokeOnCompletion {
+        store.close()
+    }
+    return store
 }
 
 /**
@@ -81,34 +80,40 @@ public fun <Action, State> CoroutineScope.createFlowReduxStore(
  * Otherwise, the [Action] will be mapped to an [Output] and sent to the [Channel].
  * @return A [Pair] of the [SideEffect] and a [Flow] of [Output]s.
  */
-public fun <Action, State, Output> allActionsToOutputChannelSideEffect(
-  capacity: Int = Channel.UNLIMITED,
-  transformActionToOutput: (Action) -> Output?,
+fun <Action, State, Output> allActionsToOutputChannelSideEffect(
+    capacity: Int = Channel.UNLIMITED,
+    transformActionToOutput: (Action) -> Output?,
 ): Pair<SideEffect<Action, State>, ReceiveChannel<Output>> {
-  val actionChannel = Channel<Output>(capacity)
+    val actionChannel = Channel<Output>(capacity)
 
-  val sideEffect = SideEffect<Action, State> { actionFlow, _, coroutineScope ->
-    actionFlow
-      .mapNotNull(transformActionToOutput)
-      .onEach(actionChannel::send)
-      .onCompletion { actionChannel.close() }
-      .launchIn(coroutineScope)
+    val sideEffect = SideEffect<Action, State> { actionFlow, _, coroutineScope ->
+        actionFlow
+            .mapNotNull(transformActionToOutput)
+            .onEach(actionChannel::send)
+            .onCompletion { actionChannel.close() }
+            .launchIn(coroutineScope)
 
-    emptyFlow()
-  }
+        emptyFlow()
+    }
 
-  return sideEffect to actionChannel
+    return sideEffect to actionChannel
 }
 
 @Suppress("FunctionName") // Factory function
-public fun <Action, State> FlowReduxStore(
-  coroutineContext: CoroutineContext,
-  initialState: State,
-  sideEffects: List<SideEffect<Action, State>>,
-  reducer: Reducer<Action, State>,
+fun <Action, State> FlowReduxStore(
+    coroutineContext: CoroutineContext,
+    initialState: State,
+    sideEffects: List<SideEffect<Action, State>>,
+    reducer: Reducer<Action, State>,
 ): FlowReduxStore<Action, State> = DefaultFlowReduxStore(
-  coroutineContext = coroutineContext,
-  initialState = initialState,
-  sideEffects = sideEffects,
-  reducer = reducer
+    coroutineContext = coroutineContext,
+    initialState = initialState,
+    sideEffects = sideEffects,
+    reducer = reducer
 )
+
+// Action ,State  -> State ==> State,Action --> State
+fun <A, B, C> ((A, B) -> C).flip(): (B, A) -> C = { b, a -> this(a, b) }
+
+
+

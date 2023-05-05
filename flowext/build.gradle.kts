@@ -6,9 +6,10 @@ android {
 }
 plugins {
     id("movie-preview.android.library")
+    id("movie-preview.android.feature")
 }
 
-android.namespace = "com.preview.flowredux"
+android.namespace = "com.preview.flowext"
 
 
 dependencies {

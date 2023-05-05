@@ -6,6 +6,7 @@ import com.chungha.core_domain.model.MovieModel
 import com.chungha.core_domain.usecase.SearchMovieUseCase
 import com.chungha.core_network.di.DispatcherProvider
 import com.example.core_ui.widget.common.LceState
+import com.preview.flowredux.flowFromSuspend
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -31,7 +32,9 @@ class SearchViewModel @Inject constructor(
             .debounce(300L)
             .distinctUntilChanged()
             .flatMapLatest { query ->
-                searchMovieUseCase.invoke(query)
+                flowFromSuspend {
+                    searchMovieUseCase.invoke(query)
+                }
             }
             .catch { _uiState.value = LceState.Error(message = it.message.orEmpty()) }
             .onEach {
