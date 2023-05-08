@@ -9,13 +9,18 @@ This is an example of an Android App who uses Jetpack Compose to draw the UI, Ko
 
   The **Movie Preview** app has been fully modularized and you can find the detailed guidance and
   description of the modularization strategy used in
-  [modularization learning journey](docs/ModularizationLearningJourney.md).
 
-![Modularization graph](docs/images/modularization-graph.png)
 ## V1 ![](https://geps.dev/progress/100)
 - [√] Add Modularization
 - [√] Add Search
 - [√] Add Convention Plugin
+
+## V2 ![](https://geps.dev/progress/100)
+- [√] Add Redux Flow Module
+- [√] Add FlowExt Module
+- [√] Add Search Feature with ReduxFlow style
+
+Checkout the `dev` branch to see the redux flow
 
 ## Features
 
