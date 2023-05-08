@@ -189,7 +189,7 @@ fun SearchContent(
                 }
             } else {
                 LazyVerticalGridMovie(
-                    listMovie = movieResult.toImmutableList(),
+                    listMovie = movieResult,
                     state = state,
                     contentPadding = PaddingValues(bottom = 12.dp),
                     modifier = Modifier.constrainAs(listMovieRef) {
