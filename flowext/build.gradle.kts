@@ -6,7 +6,6 @@ android {
 }
 plugins {
     id("movie-preview.android.library")
-    id("movie-preview.android.feature")
 }
 
 android.namespace = "com.preview.flowext"

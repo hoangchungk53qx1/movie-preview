@@ -15,16 +15,16 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.job
 
 // TODO: Consider using AutoCloseable since Kotlin 1.8.20
-public sealed interface FlowReduxStore<Action, State> {
+sealed interface FlowReduxStore<Action, State> {
     /**
      * The state of this store.
      */
-    public val stateFlow: StateFlow<State>
+    val stateFlow: StateFlow<State>
 
     /**
      * @return false if cannot dispatch action (this store was closed).
      */
-    public fun dispatch(action: Action): Boolean
+    fun dispatch(action: Action): Boolean
 
     /**
      * Call this method to close this store.
@@ -112,7 +112,7 @@ fun <Action, State> FlowReduxStore(
     reducer = reducer
 )
 
-// Action ,State  -> State ==> State,Action --> State
+// Action ,State  -> State ==> State, Action --> State
 fun <A, B, C> ((A, B) -> C).flip(): (B, A) -> C = { b, a -> this(a, b) }
 
 

@@ -14,16 +14,18 @@ class SearchReduxViewModel @Inject constructor(
     searchMovieUseCase: SearchMovieUseCase,
 ) : ViewModel() {
 
-    private val store = viewModelScope.createFlowReduxStore(
-        initialState = MovieSearchState.initialState(),
-        sideEffects = MovieSearchSideEffects(searchMovieUseCase).sideEffects,
-        reducer = SearchAction::reduce.flip()
-    )
 //    private val store = viewModelScope.createFlowReduxStore(
 //        initialState = MovieSearchState.initialState(),
 //        sideEffects = MovieSearchSideEffects(searchMovieUseCase).sideEffects,
-//        reducer = { state, action -> action.reduce(state) }
+//        reducer = SearchAction::reduce.flip()
 //    )
+
+        private val store = viewModelScope.createFlowReduxStore(
+        initialState = MovieSearchState.initialState(),
+        sideEffects = MovieSearchSideEffects(searchMovieUseCase).sideEffects,
+        reducer = { state, action -> action.reduce(state) }
+    )
+    fun dispatch(action: SearchAction) = store.dispatch(action)
 
     val stateFlow = store.stateFlow
 
