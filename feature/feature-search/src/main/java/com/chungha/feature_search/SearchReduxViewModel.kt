@@ -1,4 +1,4 @@
-package com.chungha.feature_search.reduxsearch
+package com.chungha.feature_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

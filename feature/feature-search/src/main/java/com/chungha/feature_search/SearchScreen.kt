@@ -1,6 +1,5 @@
 package com.chungha.feature_search
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -24,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
@@ -35,17 +32,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.chungha.core_domain.model.MovieModel
-import com.chungha.feature_search.reduxsearch.MovieSearchState
-import com.chungha.feature_search.reduxsearch.SearchAction
-import com.chungha.feature_search.reduxsearch.SearchReduxViewModel
 import com.example.core_designsystem.theme.*
 import com.example.core_ui.widget.widget.LoadingPreview
-import com.example.core_ui.widget.common.LceState
-import com.example.core_ui.widget.common.getValueLceOrNull
-import com.example.core_ui.widget.common.showLoadingLceState
 import com.example.core_ui.widget.widget.LazyVerticalGridMovie
-import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SearchRoute(
@@ -156,7 +145,7 @@ fun SearchContent(
     onItemMovieClick: (Int) -> Unit
 ) {
     ConstraintLayout(modifier = modifier) {
-        val (loading, listMovieRef, noResult) = createRefs()
+        val (loading, listMovieRef) = createRefs()
         if (uiState.isLoading) {
             LoadingPreview(modifier = Modifier.constrainAs(loading) {
                 linkTo(
@@ -183,7 +172,7 @@ fun SearchContent(
                     Text(
                         color = Color.Blue,
                         style = MovieTypography.bodyMedium,
-                        text = "Not Found",
+                        text = "Not Found Movie",
                         textAlign = TextAlign.Center
                     )
                 }

@@ -1,4 +1,4 @@
-package com.chungha.feature_search.reduxsearch
+package com.chungha.feature_search
 
 import com.chungha.core_domain.model.MovieModel
 import kotlinx.collections.immutable.PersistentList
