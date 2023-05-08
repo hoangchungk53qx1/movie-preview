@@ -30,7 +30,8 @@ internal class MovieSearchSideEffects(private val searchMovieUseCase: SearchMovi
         SideEffect<SearchAction, MovieSearchState> { actionFlow, _, _ ->
             actionFlow.filterIsInstance<SearchAction.Search>()
                 .map { it.term.trim() }
-                .debounce(300.milliseconds).filter { it.isNotBlank() }
+                .debounce(300.milliseconds)
+                .filter { it.isNotBlank() }
                 .distinctUntilChanged()
                 .map { SearchSideEffectAction.TextChanged(term = it) }
         }
@@ -59,7 +60,5 @@ internal class MovieSearchSideEffects(private val searchMovieUseCase: SearchMovi
                     error = throwable
                 )
             )
-        }.onStart {
-
         }
 }
