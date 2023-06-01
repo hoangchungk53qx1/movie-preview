@@ -28,6 +28,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
         dependencies {
             add("implementation", project(":core:core-ui"))
+            add("implementation", project(":flowredux"))
+            add("implementation", project(":flowext"))
 
             add("implementation", libs.androidx.lifecycle.runtime.compose)
             add("implementation", libs.androidx.lifecycle.viewmodel.compose)

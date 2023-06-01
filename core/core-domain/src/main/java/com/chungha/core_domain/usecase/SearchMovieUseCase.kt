@@ -7,7 +7,5 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class SearchMovieUseCase @Inject constructor(private val searchRepository: SearchRepository) {
-    fun invoke(query: String): Flow<List<MovieModel>> = flow {
-        emit(searchRepository.search(query = query))
-    }
+    suspend fun invoke(query: String):List<MovieModel> = searchRepository.search(query = query)
 }

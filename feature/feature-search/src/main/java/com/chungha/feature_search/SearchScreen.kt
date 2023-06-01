@@ -14,7 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -33,6 +36,9 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.chungha.core_domain.model.MovieModel
+import com.chungha.feature_search.reduxsearch.MovieSearchState
+import com.chungha.feature_search.reduxsearch.SearchAction
+import com.chungha.feature_search.reduxsearch.SearchReduxViewModel
 import com.example.core_designsystem.theme.*
 import com.example.core_ui.widget.widget.LoadingPreview
 import com.example.core_ui.widget.common.LceState
@@ -43,7 +49,7 @@ import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SearchRoute(
-    searchViewModel: SearchViewModel = hiltViewModel()
+    searchViewModel: SearchReduxViewModel = hiltViewModel()
 ) {
     SearchScreen(searchViewModel = searchViewModel)
 }
@@ -51,17 +57,15 @@ fun SearchRoute(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchScreen(
-    searchViewModel: SearchViewModel, modifier: Modifier = Modifier
+    searchViewModel: SearchReduxViewModel,
+    modifier: Modifier = Modifier
 ) {
-    val lifecycle = LocalLifecycleOwner.current.lifecycle
     val keyboardController = LocalSoftwareKeyboardController.current
-//    val queryValue: String by searchViewModel.query.observeAsState(initial = "")
-    val queryValue: String by searchViewModel.query.collectAsStateWithLifecycle()
-    val uiState by searchViewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by searchViewModel.stateFlow.collectAsStateWithLifecycle()
+
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (query, content) = createRefs()
         SearchTextField(
-            queryValue = queryValue,
             keyboardController = keyboardController,
             modifier = Modifier.constrainAs(query) {
                 linkTo(
@@ -74,10 +78,10 @@ fun SearchScreen(
                 width = Dimension.fillToConstraints
             },
         ) { queryInput ->
-            searchViewModel.queryTextChange(queryInput)
+            searchViewModel.dispatch(SearchAction.Search(term = queryInput))
         }
-        SearchContent(uiState = uiState,
-            queryValue = queryValue,
+        SearchContent(
+            uiState = uiState,
             keyboardController = keyboardController,
             modifier = Modifier.constrainAs(content) {
                 linkTo(
@@ -97,15 +101,18 @@ fun SearchScreen(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchTextField(
-    queryValue: String,
     keyboardController: SoftwareKeyboardController?,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
+    var queryValue: String by rememberSaveable { mutableStateOf("") }
     TextField(
         value = queryValue,
-        onValueChange = onValueChange,
+        onValueChange = {
+            onValueChange.invoke(it)
+            queryValue = it
+        },
         singleLine = true,
         maxLines = 1,
         textStyle = TextFieldStyle,
@@ -143,15 +150,14 @@ fun SearchTextField(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchContent(
-    uiState: LceState<List<MovieModel>>,
-    queryValue: String,
+    uiState: MovieSearchState,
     keyboardController: SoftwareKeyboardController?,
     modifier: Modifier = Modifier,
     onItemMovieClick: (Int) -> Unit
 ) {
     ConstraintLayout(modifier = modifier) {
         val (loading, listMovieRef, noResult) = createRefs()
-        if (showLoadingLceState(uiState) && queryValue.isNotEmpty()) {
+        if (uiState.isLoading) {
             LoadingPreview(modifier = Modifier.constrainAs(loading) {
                 linkTo(
                     start = parent.start, end = parent.end
@@ -163,13 +169,13 @@ fun SearchContent(
                 height = Dimension.fillToConstraints
             })
         } else {
-            val movieResult = getValueLceOrNull(uiState)
+            val movieResult = uiState.item
             val state = rememberLazyGridState()
             val scroll = remember { derivedStateOf { state.firstVisibleItemScrollOffset } }
             if (scroll.value > 0) {
                 keyboardController?.hide()
             }
-            if (movieResult.isNullOrEmpty()) {
+            if (movieResult.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center,
@@ -183,7 +189,7 @@ fun SearchContent(
                 }
             } else {
                 LazyVerticalGridMovie(
-                    listMovie = movieResult.toImmutableList(),
+                    listMovie = movieResult,
                     state = state,
                     contentPadding = PaddingValues(bottom = 12.dp),
                     modifier = Modifier.constrainAs(listMovieRef) {

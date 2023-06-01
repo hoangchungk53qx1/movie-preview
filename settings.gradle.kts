@@ -31,3 +31,5 @@ include(":feature:feature-search")
 include(":feature:feature-favorite")
 include(":feature:feature-setting")
 
+include(":flowredux")
+include(":flowext")
