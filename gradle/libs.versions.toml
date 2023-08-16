@@ -54,6 +54,8 @@ javax-inject = "1"
 
 accompanist = "0.28.0"
 coil = "2.2.2"
+appcompat = "1.6.1"
+material = "1.9.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
@@ -146,6 +148,8 @@ timber-loging = { module = "com.jakewharton.timber:timber", version.ref = "timbe
 livedata_runtime = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "livedata-runtime" }
 livedata_ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "livedata-ktx" }
 immutable-list = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "immutable-list" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 androidx-compose = [

@@ -33,3 +33,4 @@ include(":feature:feature-setting")
 
 include(":flowredux")
 include(":flowext")
+include(":feature:feature-preview")
