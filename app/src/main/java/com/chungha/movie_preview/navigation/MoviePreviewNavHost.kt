@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import com.chungha.feature_favourite.navigation.favouriteScreen
 import com.chungha.feature_home.navigation.homeNavigationRoute
 import com.chungha.feature_home.navigation.homeScreen
+import com.chungha.feature_preview.navigation.navigationPreViewMovie
+import com.chungha.feature_preview.navigation.previewMovieGraph
 import com.chungha.feature_search.navigation.searchScreen
 import com.chungha.feature_setting.navigation.settingScreen
 
@@ -28,10 +30,12 @@ fun MoviePreviewNavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        // TODO: handle topic clicks from each top level destination
         homeScreen(onTopicClick = {})
-        searchScreen()
+        searchScreen(navigateToPreview =  {
+            navController.navigationPreViewMovie(navOptions = null)
+        })
         favouriteScreen()
         settingScreen()
+        previewMovieGraph()
     }
 }
