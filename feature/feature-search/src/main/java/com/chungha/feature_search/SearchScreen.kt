@@ -1,6 +1,5 @@
 package com.chungha.feature_search
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -24,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
@@ -35,30 +32,30 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.chungha.core_domain.model.MovieModel
 import com.chungha.feature_search.reduxsearch.MovieSearchState
 import com.chungha.feature_search.reduxsearch.SearchAction
 import com.chungha.feature_search.reduxsearch.SearchReduxViewModel
 import com.example.core_designsystem.theme.*
 import com.example.core_ui.widget.widget.LoadingPreview
-import com.example.core_ui.widget.common.LceState
-import com.example.core_ui.widget.common.getValueLceOrNull
-import com.example.core_ui.widget.common.showLoadingLceState
 import com.example.core_ui.widget.widget.LazyVerticalGridMovie
-import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SearchRoute(
-    searchViewModel: SearchReduxViewModel = hiltViewModel()
+    searchViewModel: SearchReduxViewModel = hiltViewModel(),
+    navigateToPreview: (idMovie: Int) -> Unit
 ) {
-    SearchScreen(searchViewModel = searchViewModel)
+    SearchScreen(
+        searchViewModel = searchViewModel,
+        navigateToPreview = navigateToPreview
+    )
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchScreen(
     searchViewModel: SearchReduxViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToPreview: (idMovie: Int) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val uiState by searchViewModel.stateFlow.collectAsStateWithLifecycle()
@@ -80,8 +77,7 @@ fun SearchScreen(
         ) { queryInput ->
             searchViewModel.dispatch(SearchAction.Search(term = queryInput))
         }
-        SearchContent(
-            uiState = uiState,
+        SearchContent(uiState = uiState,
             keyboardController = keyboardController,
             modifier = Modifier.constrainAs(content) {
                 linkTo(
@@ -93,7 +89,7 @@ fun SearchScreen(
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
             }) {
-
+            navigateToPreview.invoke(it)
         }
     }
 }
@@ -107,42 +103,30 @@ fun SearchTextField(
 ) {
     val focusManager = LocalFocusManager.current
     var queryValue: String by rememberSaveable { mutableStateOf("") }
-    TextField(
-        value = queryValue,
-        onValueChange = {
-            onValueChange.invoke(it)
-            queryValue = it
-        },
-        singleLine = true,
-        maxLines = 1,
-        textStyle = TextFieldStyle,
-        placeholder = {
-            Text(
-                text = "Search Movie ...", style = TextFieldStyle
-            )
-        },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = PurpleGray30,
-            textColor = TextFieldTextColor,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-        ),
-        keyboardActions = KeyboardActions(onSearch = {
-            focusManager.clearFocus()
-            keyboardController?.hide()
-        }),
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Search, keyboardType = KeyboardType.Text
-        ),
-        shape = MaterialTheme.shapes.small,
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = "Search",
-                tint = TextFieldTextColor
-            )
-        },
-        modifier = modifier.clip(RoundedShape)
+    TextField(value = queryValue, onValueChange = {
+        onValueChange.invoke(it)
+        queryValue = it
+    }, singleLine = true, maxLines = 1, textStyle = TextFieldStyle, placeholder = {
+        Text(
+            text = "Search Movie ...", style = TextFieldStyle
+        )
+    }, colors = TextFieldDefaults.textFieldColors(
+        backgroundColor = PurpleGray30,
+        textColor = TextFieldTextColor,
+        focusedIndicatorColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent
+    ), keyboardActions = KeyboardActions(onSearch = {
+        focusManager.clearFocus()
+        keyboardController?.hide()
+    }), keyboardOptions = KeyboardOptions(
+        imeAction = ImeAction.Search, keyboardType = KeyboardType.Text
+    ), shape = MaterialTheme.shapes.small, leadingIcon = {
+        Icon(
+            imageVector = Icons.Default.Search,
+            contentDescription = "Search",
+            tint = TextFieldTextColor
+        )
+    }, modifier = modifier.clip(RoundedShape)
 
     )
 }
@@ -156,7 +140,7 @@ fun SearchContent(
     onItemMovieClick: (Int) -> Unit
 ) {
     ConstraintLayout(modifier = modifier) {
-        val (loading, listMovieRef, noResult) = createRefs()
+        val (loading, listMovieRef, _) = createRefs()
         if (uiState.isLoading) {
             LoadingPreview(modifier = Modifier.constrainAs(loading) {
                 linkTo(
@@ -203,7 +187,7 @@ fun SearchContent(
                         height = Dimension.fillToConstraints
                     },
                 ) {
-
+                    onItemMovieClick.invoke(it)
                 }
             }
         }

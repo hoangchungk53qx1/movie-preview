@@ -15,12 +15,12 @@ plugins {
 @Suppress("UnstableApiUsage")
 android {
     namespace = "com.chungha.movie_preview"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.chungha.movie_preview"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -60,26 +60,27 @@ dependencies {
     implementation(project(":feature:feature-search"))
     implementation(project(":feature:feature-favorite"))
     implementation(project(":feature:feature-setting"))
+    implementation(project(":feature:feature-preview"))
 
 
     // lib
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.4.2")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.4.2")
+    debugImplementation(libs.androidx.ui.test.manifest)
 
 
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.bom)
+    implementation(platform(libs.androidx.compose.bom))
 
     implementation(libs.immutable.list)
 
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.windowSizeClass)
-    implementation(libs.androidx.compose.bom)
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.tracing.ktx)
 
