@@ -1,8 +1,10 @@
 package com.chungha.movie_preview.di
 
 import com.chungha.core_domain.repository.MoviePlayingRepository
+import com.chungha.core_domain.repository.PreviewRepository
 import com.chungha.core_domain.repository.SearchRepository
 import com.example.core_data.repository.MoviePlayingRepositoryImpl
+import com.example.core_data.repository.PreviewMovieRepositoryImpl
 import com.example.core_data.repository.SearchMovieRepositoryImpl
 import dagger.Binds
 import dagger.Module
@@ -21,5 +23,9 @@ interface RepositoryModule {
     @Binds
     @ViewModelScoped
     fun bindMoviePlayingRepository(movieRepositoryImpl: MoviePlayingRepositoryImpl): MoviePlayingRepository
+
+    @Binds
+    @ViewModelScoped
+    fun bindMoviePreviewRepository(previewRepositoryImpl: PreviewMovieRepositoryImpl): PreviewRepository
 
 }

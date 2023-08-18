@@ -140,7 +140,7 @@ fun SearchContent(
     onItemMovieClick: (Int) -> Unit
 ) {
     ConstraintLayout(modifier = modifier) {
-        val (loading, listMovieRef, noResult) = createRefs()
+        val (loading, listMovieRef, _) = createRefs()
         if (uiState.isLoading) {
             LoadingPreview(modifier = Modifier.constrainAs(loading) {
                 linkTo(

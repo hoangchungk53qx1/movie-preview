@@ -26,6 +26,9 @@ object NetworkModule {
     fun provideSearchService(apiProvider : ProviderServiceApi) = apiProvider.searchService
 
     @Provides
-    fun provideMoviePlayingService(apiProvider : ProviderServiceApi) = apiProvider.moviePlayingService
+    fun provideMoviePlayingService(apiProvider: ProviderServiceApi) = apiProvider.moviePlayingService
+
+    @Provides
+    fun providePreviewServiceService(apiProvider: ProviderServiceApi) = apiProvider.previewMovie
 
 }
