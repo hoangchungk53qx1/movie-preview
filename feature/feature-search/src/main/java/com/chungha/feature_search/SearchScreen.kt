@@ -42,11 +42,10 @@ import com.example.core_ui.widget.widget.LazyVerticalGridMovie
 @Composable
 fun SearchRoute(
     searchViewModel: SearchReduxViewModel = hiltViewModel(),
-    navigateToPreview: (idMovie: Int) -> Unit
+    navigateToPreview: (idMovie: Int) -> Unit,
 ) {
     SearchScreen(
-        searchViewModel = searchViewModel,
-        navigateToPreview = navigateToPreview
+        searchViewModel = searchViewModel, navigateToPreview = navigateToPreview
     )
 }
 
@@ -55,7 +54,7 @@ fun SearchRoute(
 fun SearchScreen(
     searchViewModel: SearchReduxViewModel,
     modifier: Modifier = Modifier,
-    navigateToPreview: (idMovie: Int) -> Unit
+    navigateToPreview: (idMovie: Int) -> Unit,
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val uiState by searchViewModel.stateFlow.collectAsStateWithLifecycle()
@@ -77,7 +76,8 @@ fun SearchScreen(
         ) { queryInput ->
             searchViewModel.dispatch(SearchAction.Search(term = queryInput))
         }
-        SearchContent(uiState = uiState,
+        SearchContent(
+            uiState = uiState,
             keyboardController = keyboardController,
             modifier = Modifier.constrainAs(content) {
                 linkTo(
@@ -88,7 +88,8 @@ fun SearchScreen(
                 )
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
-            }) {
+            },
+        ) {
             navigateToPreview.invoke(it)
         }
     }
@@ -99,7 +100,7 @@ fun SearchScreen(
 fun SearchTextField(
     keyboardController: SoftwareKeyboardController?,
     modifier: Modifier = Modifier,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
     var queryValue: String by rememberSaveable { mutableStateOf("") }
@@ -137,7 +138,7 @@ fun SearchContent(
     uiState: MovieSearchState,
     keyboardController: SoftwareKeyboardController?,
     modifier: Modifier = Modifier,
-    onItemMovieClick: (Int) -> Unit
+    onItemMovieClick: (Int) -> Unit,
 ) {
     ConstraintLayout(modifier = modifier) {
         val (loading, listMovieRef, _) = createRefs()

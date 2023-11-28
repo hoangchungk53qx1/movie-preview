@@ -10,7 +10,6 @@ android {
 
 dependencies {
     api(project(":core:core-common"))
-//    api(project(":core:core-data"))
     api(project(":core:core-network"))
 
     implementation(libs.kotlinx.datetime)

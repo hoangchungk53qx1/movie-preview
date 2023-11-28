@@ -31,8 +31,10 @@ fun MoviePreviewNavHost(
         modifier = modifier,
     ) {
         homeScreen(onTopicClick = {})
-        searchScreen(navigateToPreview =  {
-            navController.navigationPreViewMovie(navOptions = null)
+        searchScreen(navigateToPreview = { id ->
+            navController.navigationPreViewMovie(
+                navOptions = null, id = id
+            )
         })
         favouriteScreen()
         settingScreen()
