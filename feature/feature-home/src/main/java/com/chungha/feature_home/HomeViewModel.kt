@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val homeUiState =
-        movieUseCase.invokeMoviePlaying()
+        movieUseCase.invokeMovieTopRated()
             .onStart {  }
             .onCompletion {  }
             .catch {  }
