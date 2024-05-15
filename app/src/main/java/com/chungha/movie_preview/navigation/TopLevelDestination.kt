@@ -31,7 +31,7 @@ enum class TopLevelDestination(
     SETTING(
         selectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Setting_Icon),
         unselectedIcon = IconApp.DrawableResourceIcon(MoviePreviewIcons.Setting_Icon),
-        iconTextId = R.string.search_title,
+        iconTextId = R.string.setting_title,
         titleTextId = R.string.app_name,
     )
 }
