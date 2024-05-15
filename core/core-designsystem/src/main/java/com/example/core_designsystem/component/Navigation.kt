@@ -2,19 +2,11 @@ package com.example.core_designsystem.component
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.NavigationRail
-import androidx.compose.material3.NavigationRailItem
-import androidx.compose.material3.NavigationRailItemDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.core_designsystem.theme.Background
-import com.example.core_designsystem.theme.Disable
-import com.example.core_designsystem.theme.Enable
 
 /**
  * Now in Android navigation bar item with icon and label content slots. Wraps Material 3
@@ -77,7 +69,6 @@ fun NiaNavigationBar(
         contentColor = MoviePreviewNavigationDefaults.navigationContentColor(),
         tonalElevation = 0.dp,
         content = content,
-        containerColor = Background,
     )
 }
 
@@ -153,11 +144,11 @@ fun NiaNavigationRail(
  */
 object MoviePreviewNavigationDefaults {
     @Composable
-    fun navigationContentColor() = Disable
+    fun navigationContentColor() = MaterialTheme.colorScheme.onSurfaceVariant
 
     @Composable
-    fun navigationSelectedItemColor() = Enable
+    fun navigationSelectedItemColor() = MaterialTheme.colorScheme.onPrimaryContainer
 
     @Composable
-    fun navigationIndicatorColor() = Background
+    fun navigationIndicatorColor() = MaterialTheme.colorScheme.primaryContainer
 }

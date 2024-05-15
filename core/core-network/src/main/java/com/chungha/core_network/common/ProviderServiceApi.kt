@@ -9,7 +9,7 @@ import retrofit2.create
 import javax.inject.Inject
 
 class ProviderServiceApi @Inject constructor(private val apiKeyProvider: MoviePreviewKeyProvider) {
-    val searchService: SearchService by lazy { retrofit(apiKeyProvider = apiKeyProvider).create() }
-    val movieService: MovieService by lazy { retrofit(apiKeyProvider = apiKeyProvider).create() }
-    val previewMovie: PreviewService by lazy { retrofit(apiKeyProvider = apiKeyProvider).create() }
+    val searchService : SearchService by lazy { retrofit(apiKeyProvider = apiKeyProvider).create() }
+    val moviePlayingService : MovieService by lazy { retrofit(apiKeyProvider = apiKeyProvider).create() }
+    val previewMovie : PreviewService by lazy { retrofit(apiKeyProvider = apiKeyProvider).create() }
 }

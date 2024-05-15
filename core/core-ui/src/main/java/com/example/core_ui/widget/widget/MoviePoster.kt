@@ -1,11 +1,12 @@
 package com.example.core_ui.widget.widget
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -25,10 +26,8 @@ fun MoviePoster(
 ) {
     Card(
         shape = RoundedShape,
-        modifier = modifier.height(size),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp
-        ),
+        border = BorderStroke(0.5.dp, Color.Gray),
+        modifier = modifier.height(size)
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current).data(imagePath).crossfade(false)
