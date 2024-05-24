@@ -34,15 +34,20 @@ class HomeViewModel @Inject constructor(
         }
     ) { topRatedMovies, movies ->
         HomeViewState(
+            isLoading = false,
             selectedCategory = _selectedCategory.value,
             topRatedMovies = topRatedMovies,
             movies = movies,
         )
     }.catch { throwable ->
-        // TODO: emit a UI error here. For now we'll just rethrow
-        throw throwable
+        HomeViewState(
+            isLoading = false,
+            error = throwable,
+        )
     }.stateIn(
-        scope = viewModelScope, started = WhileSubscribedOrRetained, initialValue = HomeViewState()
+        scope = viewModelScope,
+        started = WhileSubscribedOrRetained,
+        initialValue = HomeViewState()
     )
 
     fun onCategorySelected(category: HomeCategory) {
@@ -51,6 +56,8 @@ class HomeViewModel @Inject constructor(
 }
 
 data class HomeViewState(
+    val isLoading: Boolean = true,
+    val error: Throwable? = null,
     val categories: List<HomeCategory> = HomeCategory.values().toList(),
     val selectedCategory: HomeCategory = HomeCategory.NOW_PLAYING,
     val topRatedMovies: List<MovieModel> = emptyList(),
