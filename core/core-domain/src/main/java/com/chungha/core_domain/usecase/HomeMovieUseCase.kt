@@ -1,8 +1,8 @@
 package com.chungha.core_domain.usecase
 
+import com.chungha.core_domain.model.HomeCategory
 import com.chungha.core_domain.model.MovieModel
 import com.chungha.core_domain.repository.MoviePlayingRepository
-import com.chungha.core_domain.repository.MovieTopRatedRepository
 import com.chungha.core_network.di.DispatcherProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,14 +11,25 @@ import javax.inject.Inject
 
 class HomeMovieUseCase @Inject constructor(
     private val moviePlayingRepository: MoviePlayingRepository,
-    private val movieTopRatedRepository: MovieTopRatedRepository,
     private val dispatcherProvider: DispatcherProvider,
 ) {
-    fun invokeMoviePlaying(): Flow<List<MovieModel>> = flow {
-        emit(moviePlayingRepository.getPlayingMovie())
-    }.flowOn(dispatcherProvider.io)
+    fun invokeMoviePlaying(homeCategory: HomeCategory): Flow<List<MovieModel>> = flow {
+        when (homeCategory) {
+            HomeCategory.NOW_PLAYING -> {
+                emit(moviePlayingRepository.getPlayingMovie())
+            }
 
-    fun invokeMovieTopRated(): Flow<List<MovieModel>> = flow {
-        emit(movieTopRatedRepository.getTopRatedMovie())
+            HomeCategory.UPCOMING -> {
+                emit(moviePlayingRepository.getUpcomingMovie())
+            }
+
+            HomeCategory.TOP_RATED -> {
+                emit(moviePlayingRepository.getTopRatedMovie())
+            }
+
+            HomeCategory.POPULAR -> {
+                emit(moviePlayingRepository.getPopularMovie())
+            }
+        }
     }.flowOn(dispatcherProvider.io)
 }

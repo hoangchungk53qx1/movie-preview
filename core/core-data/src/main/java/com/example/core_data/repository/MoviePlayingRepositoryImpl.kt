@@ -16,4 +16,21 @@ class MoviePlayingRepositoryImpl @Inject constructor(private val moviePlayingSer
         }
     }
 
+    override suspend fun getUpcomingMovie(): List<MovieModel> {
+        return moviePlayingService.getUpComingMovie().results.map { movie ->
+            movie.toMovieModel()
+        }
+    }
+
+    override suspend fun getTopRatedMovie(): List<MovieModel> {
+        return moviePlayingService.getTopRatedMovie().results.map { movie ->
+            movie.toMovieModel()
+        }
+    }
+
+    override suspend fun getPopularMovie(): List<MovieModel> {
+        return moviePlayingService.getPopularMovie().results.map { movie ->
+            movie.toMovieModel()
+        }
+    }
 }
