@@ -44,7 +44,7 @@ livedata-runtime = "1.3.3"
 livedata-ktx = "2.6.0"
 immutable-list = "0.3.5"
 
-dagger = "2.44"
+dagger = "2.52"
 okhttp = "4.10.0"
 okhttp_intercepter = "5.0.0-alpha.9"
 retrofit = "2.9.0"
